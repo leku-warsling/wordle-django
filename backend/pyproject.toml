@@ -1,0 +1,25 @@
+[project]
+name = "wordle-api"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Luke Rawlings",email = "luke.rawl85@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django (>=5.1.7,<6.0.0)",
+    "psycopg2-binary (>=2.9.10,<3.0.0)",
+    "djangorestframework (>=3.15.2,<4.0.0)",
+    "django-cors-headers (>=4.7.0,<5.0.0)",
+    "pytest (>=8.3.5,<9.0.0)",
+    "pytest-django (>=4.10.0,<5.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
