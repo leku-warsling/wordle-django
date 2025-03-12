@@ -57,7 +57,15 @@ def make_guess(request, id):
     solution_word = game.solution_word
     next_guesse = game.guesses_used + 1
 
-    if next_guesse > 6:
+    if next_guesse <= 6 and guess_word == solution_word:
+        game.is_winner = True
+        game.is_game_over = True
+        game.save()
+        return Response(
+            {"type": "CORRECT", "solution": game.solution_word, "message": "You won!"}
+        )
+
+    if next_guesse >= 6:
         game.is_game_over = True
         game.save()
         return Response(
@@ -70,14 +78,6 @@ def make_guess(request, id):
     else:
         game.guesses_used = next_guesse
         game.save()
-
-    if guess_word == solution_word:
-        game.is_winner = True
-        game.is_game_over = True
-        game.save()
-        return Response(
-            {"type": "CORRECT", "solution": game.solution_word, "message": "You won!"}
-        )
 
     letter_states = get_letter_states(solution_word, guess_word)
 
